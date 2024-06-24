@@ -574,89 +574,8 @@
             <input type="submit" class="contacts__form-send" id="fb_close_<?= $ALX ?>" name="SEND_FORM"
                    value="<?= GetMessage('ALX_TP_MESSAGE_SUBMIT') ?>"/>
         </div>
-        <div id="captcha-container"></div>
     </div>
 
 </form>
 
-<script
-  src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction"
-  defer
-></script>
 
-<script>
-  let widgetId;
-
-  function onloadFunction() {
-    if (!window.smartCaptcha) {
-      return;
-    }
-
-    widgetId = window.smartCaptcha.render('captcha-container', {
-      sitekey: 'ysc1_IbmsTf1hbb0HPveBOJKUYj2ySAVpJIa4ii4AzawN4716d661',
-      invisible: true, // Сделать капчу невидимой
-      callback: callback,
-    });
-  }
-
-  function callback(token) {
-    if (typeof token === "string" && token.length > 0) {
-        // Отправить форму на бекенд
-        console.log(token);
-        document.querySelector('f_feedback_FID5').submit()
-    }
-  }
-  
-  function handleSubmit(event) {
-    if (!window.smartCaptcha) {
-      return;
-    }
-
-    window.smartCaptcha.execute(widgetId);
-  }
-</script>
-
-<?/*
-<script>
-  function callback(token) {
-    console.log(token);
-    if (token) {
-      document
-        .getElementById('fb_close_<?= $ALX ?>')
-        .removeAttribute('disabled');
-    } else {
-      document
-        .getElementById('fb_close_<?= $ALX ?>')
-        .setAttribute('disabled', '1');
-    }
-  }
-
-  function smartCaptchaInit() {
-    if (!window.smartCaptcha) {
-      return;
-    }
-
-    window.smartCaptcha.render('captcha-container', {
-      sitekey: 'ysc1_IbmsTf1hbb0HPveBOJKUYj2ySAVpJIa4ii4AzawN4716d661',
-      callback: callback,
-    });
-  }
-
-  function smartCaptchaReset() {
-    if (!window.smartCaptcha) {
-      return;
-    }
-
-    window.smartCaptcha.reset();
-  }
-
-  function smartCaptchaGetResponse() {
-    if (!window.smartCaptcha) {
-      return;
-    }
-
-    var resp = window.smartCaptcha.getResponse();
-    console.log(resp);
-    alert(resp);
-  }
-</script>*/?>
